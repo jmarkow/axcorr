@@ -1,0 +1,9 @@
+# control rasters
+
+lfp_filt_type=2
+lfp_fs=1000
+pli_bootstraps=10000
+padding=[.2 .2]
+
+
+

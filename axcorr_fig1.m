@@ -1,10 +1,14 @@
-function stan_fig1b
+function axcorr_fig1b
 %
 %
 %
 
-load custom_colormaps;
-fake_fig=stan_fake_neurons(fee_map);
-tightfig(fake_fig);
-set(fake_fig,'units','centimeters','position',[4 4 5.5 3.5],'paperpositionmode','auto');
 
+[options,dirs]=axcorr_preflight;
+
+% get  
+
+load(fullfile(dirs.save_dir,'btlfp_data.mat'),'BTLFP');
+fig=axcorr_plot_btlfp(BTLFP);
+set(fig,'units','centimeters','position',[3 3 7.5 6.5],'paperpositionmode','auto');
+markolab_multi_fig_save(fig,dirs.save_dir,'btlfp_meanandpli','eps,png,fig,pdf');

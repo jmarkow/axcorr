@@ -1,0 +1,13 @@
+#
+#folder for converted files
+
+root_dir=/Volumes/bronze_age/figures/hvc_fields
+mu_dir=/data/spikefield_stats/int2_mu2
+int_dir=/data/spikefield_stats/int2
+pn_dir=/data/spikefield_stats/pn2
+lfp_dir=/data/fields
+template_dir=/templates
+fig_dir=/figures
+save_dir=~/Desktop/Dropbox/Backup/axcorr_data
+gest_dir=~/Desktop/Dropbox/code/research/matlab/paper_figures/2012/gestures/images
+
