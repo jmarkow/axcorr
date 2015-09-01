@@ -25,20 +25,14 @@ xwin=floor(nsamples/2);
 win_t=[-xwin:xwin]/options.lfp_fs;
 win_t=win_t*1e3;
 
+inc_trials=axcorr_retain_trials(win_id);
+
 % window center
 
 % 2 x 2 grid, mean waveform on top, aligned PLI below
 
 fig=figure();
 
-ax(3)=subplot(2,2,3);
-[inc_trials]=axcorr_plot_pli(win,win_id,win_t,nbootstraps,[0 0 1],[0 0 0]);
-ylimits=ylim();
-plot([0 0],[ylimits],'k--');
-set(gca,'YTick',ylimits,'Ylimmode','manual','FontSize',8);
-yh=ylabel('PLI (Z)');
-set(yh,'position',get(yh,'position')+[-.2 0 0]);
-box on;
 
 ax(1)=subplot(2,2,1);
 
@@ -56,17 +50,20 @@ yh=ylabel('Amp. (Z)');
 set(gca,'YTick',ylimits,'xtick',[],'FontSize',8);
 set(yh,'position',get(yh,'position')+[-.2 0 0]);
 
-peakmask=BTLFP.pn.peakcount>1; % pn
-win=BTLFP.pn.hil_win(:,peakmask);
-win_id=BTLFP.pn.cell_id(peakmask);
-
-ax(4)=subplot(2,2,4);
-[inc_trials]=axcorr_plot_pli(win,win_id,win_t,nbootstraps,[1 0 0],[0 0 0]);
+ax(3)=subplot(2,2,3);
+axcorr_plot_pli(win(:,inc_trials),win_t,nbootstraps,[0 0 1],[0 0 0]);
 ylimits=ylim();
 plot([0 0],[ylimits],'k--');
 set(gca,'YTick',ylimits,'Ylimmode','manual','FontSize',8);
+yh=ylabel('PLI (Z)');
+set(yh,'position',get(yh,'position')+[-.2 0 0]);
 box on;
-xlabel('Time (ms)');
+
+
+peakmask=BTLFP.pn.peakcount>1; % pn
+win=BTLFP.pn.hil_win(:,peakmask);
+win_id=BTLFP.pn.cell_id(peakmask);
+inc_trials=axcorr_retain_trials(win_id);
 
 ax(2)=subplot(2,2,2);
 peak_idx=find(peakmask);
@@ -80,5 +77,14 @@ ylimits=ylim();
 hold on;
 plot([0 0],[ylimits],'k--');
 set(gca,'YTick',ylimits,'xtick',[],'FontSize',8);
+
+ax(4)=subplot(2,2,4);
+axcorr_plot_pli(win(:,inc_trials),win_t,nbootstraps,[1 0 0],[0 0 0]);
+ylimits=ylim();
+plot([0 0],[ylimits],'k--');
+set(gca,'YTick',ylimits,'Ylimmode','manual','FontSize',8);
+box on;
+xlabel('Time (ms)');
+
 
 linkaxes(ax,'x');
