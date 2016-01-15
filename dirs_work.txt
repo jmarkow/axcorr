@@ -2,6 +2,7 @@
 #folder for converted files
 
 root_dir=/Volumes/bronze_age/figures/hvc_fields
+ca_dir=/Volumes/bronze_age/figures/imaging
 mu_dir=/data/spikefield_stats/int2_mu2
 int_dir=/data/spikefield_stats/int2
 pn_dir=/data/spikefield_stats/pn2
