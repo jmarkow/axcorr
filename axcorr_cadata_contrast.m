@@ -23,7 +23,8 @@ tmp3=zeros(boundary_length,ntrials);
 
 parfor i=1:ntrials
   fprintf('Trial %i of %i\n',i,ntrials);
-  [tmp1(:,i),tmp2(:,i)]=acontrast_envelope(AUDIO.data(:,i),AUDIO.fs,'use_band',[1e3 8e3]);
+  [tmp1(:,i),tmp2(:,i)]=acontrast_envelope(AUDIO.data(:,i),AUDIO.fs,...
+    'use_band',[1e3 8e3],'timescale',2,'len',21.3,'overlap',21.1,'regression_timescale',.005);
   [tmp3(:,i)]=zftftb_song_det(AUDIO.data(:,i),AUDIO.fs,'ratio_thresh',3,'song_duration',.015,'len',.001,'song_band',[2e3 8e3]);
 end
 
